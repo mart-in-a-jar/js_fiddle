@@ -1,0 +1,46 @@
+:root {
+    --main-color: #3fa885;
+    --secondary-color: #082e2e;
+}
+
+.page {
+    background-color: var(--main-color);
+    border: 50px solid var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#hei {
+    font-size: 20vw;
+    font-weight: 1000;
+    text-shadow: 5px 5px brown;
+    color: var(--secondary-color);
+    animation: spin 5s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 55px;
+    text-align: right;
+    font-size: 18px;
+}
