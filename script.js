@@ -19,12 +19,12 @@ admin = userName; */
 // let currentVisitor;
 
 let userName = prompt("Who dis?");
-if (userName.length > 12) {
-    userName = "på deg";
-}
 if (userName) {
+    if (userName.length > 12) {
+        userName = "på deg";
+    }
     document.getElementById("name").innerHTML = ` ${userName}`;
-    let fSize = 20 - 1.75 * (userName.length + 1)
+    let fSize = 20 - 1.75 * (userName.length + 1);
     if (fSize < 5) {
         fSize = 5;
     }
@@ -58,16 +58,16 @@ switch (day) {
         break;
 }
 //month name
-const month = date.getMonth();
+const month = date.getMonth() + 1;
 let daysInMonth;
 switch (month) {
-    case 3: //April
-    case 5: //June
-    case 8: //September
-    case 10: //November
+    case 4: //April
+    case 6: //June
+    case 9: //September
+    case 11: //November
         daysInMonth = 30;
         break;
-    case 1: //February
+    case 2: //February
         daysInMonth = 28;
         break;
     default:
