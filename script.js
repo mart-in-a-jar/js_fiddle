@@ -18,18 +18,6 @@ admin = userName; */
 // let planet = "Earth";
 // let currentVisitor;
 
-let userName = prompt("Who dis?");
-if (userName) {
-    if (userName.length > 12) {
-        userName = "på deg";
-    }
-    document.getElementById("name").innerHTML = ` ${userName}`;
-    let fSize = 20 - 1.75 * (userName.length + 1);
-    if (fSize < 5) {
-        fSize = 5;
-    }
-    document.getElementById("hei").style.fontSize = `${fSize}vw`;
-}
 
 //day name
 const date = new Date();
@@ -95,3 +83,16 @@ document.getElementById("day").innerHTML = `${day} ${leadingZero(date.getDate())
 document.getElementById("daysInMonth").innerHTML = daysInMonth;
 
 showTime();
+
+let userName = prompt("Who dis?");
+if (userName) {
+    if (userName.length > 12) {
+        userName = "på deg";
+    }
+    document.getElementById("name").innerHTML = ` ${userName}`;
+    let fSize = 20 - 1.75 * (userName.length + 1);
+    if (fSize < 5) {
+        fSize = 5;
+    }
+    document.getElementById("hei").style.fontSize = `${fSize}vw`;
+}
