@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Functions: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      #getName {
+          padding: 4px;
+      }
+      .preview {
+          display: flex;
+          justify-content: space-between;
+          flex-flow: row-reverse;
+      }
+    </style>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+
+    <section class="preview">
+
+        <button id="getName">Try again</button>
+
+    </section>
+
+  </body>
+  <script>
+    const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+    const para = document.createElement('p');
+    const button = document.querySelector("#getName");
+
+    // Add your code here
+
+    function chooseName() {
+        return names[random(names.length)];
+    }
+
+    function random(num) {
+        return Math.floor(Math.random()*num);
+    }
+
+    para.textContent = chooseName();
+
+    button.addEventListener("click", () => para.textContent = chooseName());
+
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+
+    section.appendChild(para);
+
+    console.table(names);
+  </script>
+
+</html>
