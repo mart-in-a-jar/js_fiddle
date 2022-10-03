@@ -21,9 +21,10 @@ textInput.addEventListener("input", () => {
     smsBody = textInput.value;
     segmentedMessage = new SegmentedMessage(smsBody);
     const numberOfSegments = segmentedMessage.segments.length;
+    const price = getPrice(numberOfSegments);
     encodingOutput.textContent = segmentedMessage.encodingName;
     segmentOutput.textContent = numberOfSegments;
     priceOutput.textContent =
-        Math.round(getPrice(numberOfSegments).priceNO * 100) / 100 + " kr";
-    console.log(getPrice(numberOfSegments));
+        `${Math.round(price.priceNO * 100) / 100}kr / $${Math.round(price.priceUS * 100) / 100}`;
+    console.log(price);
 });
