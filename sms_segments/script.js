@@ -24,4 +24,5 @@ textInput.addEventListener("input", () => {
     segmentOutput.textContent = numberOfSegments;
     priceOutput.textContent =
         Math.round(getPrice(numberOfSegments).priceNO * 100) / 100 + " kr";
+    console.log(getPrice(numberOfSegments));
 });
