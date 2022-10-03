@@ -1,3 +1,4 @@
+// https://twiliodeved.github.io/message-segment-calculator/
 import { SegmentedMessage } from "sms-segments-calculator";
 
 const textInput = document.getElementById("sms-body");
