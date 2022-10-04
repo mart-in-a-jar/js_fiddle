@@ -1,0 +1,84 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    align-items: center;
+}
+
+.slideshow {
+    width: 900px;
+    height: 600px;
+    background-color: rgb(235, 235, 235);
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slideshow img {
+    height: 100%;
+    max-width: 100%;
+    display: none;
+}
+
+.slideshow img.active {
+    display: block;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    user-select: none;
+    cursor: pointer;
+    color: white;
+    font-size: 3rem;
+    background-color: rgba(3, 3, 3, 0.055);
+    transform: translateY(-50%);
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+    transition: 0.2s ease-in-out;
+    left: 0px;
+    z-index: 2;
+}
+
+.next {
+    right: 0px;
+    left: unset;
+    border-radius: 10px 0 0 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.308);
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(187, 187, 187);
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: rgb(145, 145, 145);
+}
+
+.dots {
+    text-align: center;
+}
