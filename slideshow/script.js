@@ -21,8 +21,11 @@ const slideshow = document.querySelector(".slideshow");
 const dotContainer = document.querySelector(".dots");
 const nextSlide = document.querySelector(".next");
 const prevSlide = document.querySelector(".prev");
+const playButton = document.querySelector(".play");
 
 let slide = 1;
+let timer;
+let autoSlide = false;
 
 insertImages();
 const dots = document.querySelectorAll(".dot");
@@ -58,13 +61,31 @@ function showSlide(num) {
 
     slides[slide - 1].classList.add("active");
     dots[slide - 1].classList.add("active");
+
+    // reset timer
+    clearInterval(timer);
+    if (autoSlide) {
+        timer = setInterval(() => showSlide(++slide), 3000);
+    }
 }
 
-nextSlide.addEventListener("click", () => showSlide((slide += 1)));
-prevSlide.addEventListener("click", () => showSlide((slide -= 1)));
+nextSlide.addEventListener("click", () => showSlide(++slide));
+prevSlide.addEventListener("click", () => showSlide(--slide));
 
 for (let i = 0; i < dots.length; i++) {
     dots[i].addEventListener("click", () => {
         showSlide((slide = i + 1));
     });
 }
+
+playButton.addEventListener("click", () => {
+    if (autoSlide) {
+        autoSlide = false;
+        playButton.innerHTML = "&#x23F5;";
+        showSlide(slide);
+    } else {
+        autoSlide = true;
+        playButton.innerHTML = "&#x23F8;";
+        showSlide(slide);
+    }
+});

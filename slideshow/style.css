@@ -82,3 +82,22 @@ body {
 .dots {
     text-align: center;
 }
+
+.play {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.021);
+    line-height: 20px;
+    padding: 5px 2px;
+    border-radius: 7px 0 0 0;
+    user-select: none;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.play:hover {
+    background-color: rgba(0, 0, 0, 0.308);
+}
