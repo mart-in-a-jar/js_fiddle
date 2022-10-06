@@ -18,7 +18,6 @@ const images = [
 ];
 
 const slideshow = document.querySelector(".slideshow");
-const slideshowWrapper = document.querySelector(".slideshow-wrapper");
 const dotContainer = document.querySelector(".dots");
 const nextSlide = document.querySelector(".next");
 const prevSlide = document.querySelector(".prev");
