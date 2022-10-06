@@ -18,6 +18,7 @@ const images = [
 ];
 
 const slideshow = document.querySelector(".slideshow");
+const slideshowWrapper = document.querySelector(".slideshow-wrapper");
 const dotContainer = document.querySelector(".dots");
 const nextSlide = document.querySelector(".next");
 const prevSlide = document.querySelector(".prev");
@@ -69,8 +70,23 @@ function showSlide(num) {
     }
 }
 
+// Arrow icons
 nextSlide.addEventListener("click", () => showSlide(++slide));
 prevSlide.addEventListener("click", () => showSlide(--slide));
+
+// Keyboard buttons
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case "ArrowRight":
+            showSlide(++slide);
+            break;
+        case "ArrowLeft":
+            showSlide(--slide);
+            break;
+        default:
+            break;
+    }
+});
 
 for (let i = 0; i < dots.length; i++) {
     dots[i].addEventListener("click", () => {
