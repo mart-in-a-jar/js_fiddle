@@ -1,0 +1,55 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+.form-wrapper {
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    border: 2px solid rgb(255, 154, 171);
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+    display: grid;
+    grid-template: "input ." 1fr
+                    "input error" 1fr
+                    / 250px 200px;
+    column-gap: 25px;
+}
+
+.input-field {
+    grid-area: input;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+input[type="text"],
+input[type="email"] {
+    height: 25px;
+    border-radius: 4px;
+}
+
+.error {
+    grid-area: error;
+    align-self: end;
+    transform: translateY(-5px);
+    display: none;
+}
