@@ -1,14 +1,19 @@
-import { telephoneInput } from "./telephone";
+import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 
 const telInput = document.querySelector("#tel");
 const telMessage = document.querySelector(".message.telephone");
 
 const iti = telephoneInput(telInput);
-const flagContainer = document.querySelector(".iti__flag-container");
+function checkNumber() {
+    return numberCheck(iti, telInput, telMessage);
+}
+function checkNumberInline() {
+    return numberCheckInline(iti, telInput, telMessage);
+}
 
 const submitButton = document.querySelector("button[type='submit']");
 submitButton.addEventListener("click", (e) => {
-    if (!numberCheck()) {
+    if (!checkNumber()) {
         e.preventDefault();
         console.log("noe feil");
     } else {
@@ -23,76 +28,14 @@ submitButton.addEventListener("click", (e) => {
     }
 });
 
-function numberCheckInline() {
-    const error = iti.getValidationError();
-    if (iti.isValidNumber()) {
-        telInput.classList.add("valid");
-        telInput.classList.remove("error");
-        telMessage.classList.add("valid");
-        telMessage.classList.remove("error");
-        telMessage.innerHTML = "&#x2714;";
-        return true;
-    } else {
-        telInput.classList.remove("valid");
-        telMessage.classList.remove("valid");
-        telInput.classList.add("error");
-        telMessage.classList.add("error");
-        if (error === 3) {
-            telMessage.textContent = "Number is too long";
-        } else {
-            telMessage.textContent = "";
-            telInput.classList.remove("error");
-        }
-        return false;
-    }
-}
-
-function numberCheck() {
-    const error = iti.getValidationError();
-    if (iti.isValidNumber()) {
-        telInput.classList.add("valid");
-        telInput.classList.remove("error");
-        telMessage.classList.add("valid");
-        telMessage.classList.remove("error");
-        telMessage.innerHTML = "&#x2714;";
-        return true;
-    } else {
-        telInput.classList.remove("valid");
-        telMessage.classList.remove("valid");
-        telInput.classList.add("error");
-        telMessage.classList.add("error");
-        switch (error) {
-            case 0:
-                telMessage.textContent = "Not a valid number";
-                break;
-            case 1:
-                telMessage.textContent = "Choose a country";
-                break;
-            case 2:
-                telMessage.textContent = "Number is too short";
-                break;
-            case 3:
-                telMessage.textContent = "Number is too long";
-                break;
-            case -99:
-                telMessage.textContent = "Required";
-                break;
-            default:
-                telMessage.textContent = "Something is not right";
-                break;
-        }
-        return false;
-    }
-}
-
 telInput.addEventListener("input", () => {
-    numberCheckInline();
+    checkNumberInline();
 });
 
 telInput.addEventListener("countrychange", () => {
-    numberCheckInline();
+    checkNumberInline();
 });
 
 telInput.addEventListener("blur", () => {
-    numberCheck();
+    checkNumber();
 });
