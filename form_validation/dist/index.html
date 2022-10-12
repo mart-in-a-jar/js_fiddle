@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Form validation</title>
         <link rel="stylesheet" href="style.css" />
-        <script src="script.js" defer></script>
+        <script src="main.js" defer></script>
     </head>
     <body>
         <div class="form-wrapper">
@@ -13,37 +13,37 @@
                 <div class="form-field email">
                     <div class="input-field email">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" id="email" />
+                        <input type="email" name="email" id="email" required/>
                     </div>
-                    <div class="error email">Tast en gyldig epost-adresse</div>
+                    <div class="message email">Tast en gyldig epost-adresse</div>
+                </div>
+                <div class="form-field country">
+                    <div class="input-field country">
+                        <label for="country">Country</label>
+                        <input type="text" id="country"/>
+                    </div>
+                    <div class="message country">Error</div>
+                </div>
+                <div class="form-field telephone">
+                    <div class="input-field telephone">
+                        <label for="tel">Telephone number</label>
+                        <input type="tel" name="telephone" id="tel" pattern="\d+" required/>
+                    </div>
+                    <div class="message telephone"></div>
                 </div>
                 <div class="form-field email">
                     <div class="input-field email">
-                        <label for="">Noe</label>
+                        <label for="a">Også</label>
                         <input type="text" />
                     </div>
-                    <div class="error email">Error</div>
+                    <div class="message email">Error</div>
                 </div>
                 <div class="form-field email">
                     <div class="input-field email">
-                        <label for="">Annet</label>
+                        <label for="s">Her</label>
                         <input type="text" />
                     </div>
-                    <div class="error email">Error</div>
-                </div>
-                <div class="form-field email">
-                    <div class="input-field email">
-                        <label for="">Også</label>
-                        <input type="text" />
-                    </div>
-                    <div class="error email">Error</div>
-                </div>
-                <div class="form-field email">
-                    <div class="input-field email">
-                        <label for="">Her</label>
-                        <input type="text" />
-                    </div>
-                    <div class="error email">Error</div>
+                    <div class="message email">Error</div>
                 </div>
                 <button type="submit">Submit</button>
             </form>

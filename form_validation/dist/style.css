@@ -29,7 +29,7 @@ form {
     margin-bottom: 15px;
     display: grid;
     grid-template: "input ." 1fr
-                    "input error" 1fr
+                    "input message" 35px
                     / 250px 200px;
     column-gap: 25px;
 }
@@ -38,18 +38,46 @@ form {
     grid-area: input;
     display: flex;
     flex-direction: column;
+    justify-content: end;
     gap: 3px;
 }
 
 input[type="text"],
-input[type="email"] {
-    height: 25px;
+input[type="email"],
+input[type="tel"] {
+    height: 35px;
     border-radius: 4px;
+    width: 100%;
 }
 
-.error {
-    grid-area: error;
+input:focus {
+    outline: none;
+}
+
+.message {
+    grid-area: message;
     align-self: end;
-    transform: translateY(-5px);
-    display: none;
+    line-height: 35px;
+}
+
+.message.error {
+    /* color: red; */
+}
+
+.message.valid {
+    color: green;
+    font-size: 1.5rem;
+}
+
+input.error {
+    background-color: rgb(253, 155, 155);
+    border: 1px solid red;
+}
+
+input.valid {
+    border: 1px solid green;
+}
+
+form button {
+    padding: 8px 15px;
 }
