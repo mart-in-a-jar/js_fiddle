@@ -1,5 +1,6 @@
 import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 import { emailCheck, emailCheckInline } from "./email";
+import { populateCountries } from "./country";
 
 // TELEPHONE
 
@@ -52,13 +53,20 @@ emailInput.addEventListener("input", () => {
     checkEmailInline();
 });
 
+// COUNTRY
+
+const countryInput = document.querySelector("#country");
+const countryMessage = document.querySelector(".message.country");
+
+populateCountries(countryInput);
+
 // SUBMIT
 
 const submitButton = document.querySelector("button[type='submit']");
 submitButton.addEventListener("click", (e) => {
     const validation = {
-        "Email": checkEmail(),
-        "Number": checkNumber(),
+        Email: checkEmail(),
+        Number: checkNumber(),
     };
 
     if (Object.values(validation).every((check) => check)) {
@@ -74,12 +82,12 @@ submitButton.addEventListener("click", (e) => {
         console.log(failed + " feilet validering");
     }
     // DEBUG
-/*     const number = iti.getNumber();
+    /*     const number = iti.getNumber();
     const countryCode = iti.getSelectedCountryData().dialCode;
     console.log("Landskode: " + countryCode);
     console.log("Nummer: " + number);
     console.log("Nummer clean: " + number.replace(`+${countryCode}`, ""));
 
     console.log("error " + iti.getValidationError());
-    console.log(intlTelInputUtils.validationError); */
+    console.log(window.intlTelInputUtils.validationError); */
 });

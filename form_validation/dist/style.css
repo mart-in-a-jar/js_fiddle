@@ -28,9 +28,10 @@ form {
 .form-field {
     margin-bottom: 15px;
     display: grid;
-    grid-template: "input ." 1fr
-                    "input message" 35px
-                    / 250px 200px;
+    grid-template:
+        "input ." 1fr
+        "input message" 35px
+        / 250px 200px;
     column-gap: 25px;
 }
 
@@ -44,10 +45,12 @@ form {
 
 input[type="text"],
 input[type="email"],
-input[type="tel"] {
+input[type="tel"],
+select {
     height: 35px;
     border-radius: 4px;
     width: 100%;
+    background-color: #fff;
 }
 
 input:focus {
