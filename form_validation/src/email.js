@@ -11,6 +11,7 @@ function emailCheck(input, message) {
         } else if (input.validity.typeMismatch) {
             message.textContent = "Not a valid email address";
         }
+        return false;
     }
 }
 

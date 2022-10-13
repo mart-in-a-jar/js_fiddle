@@ -56,19 +56,30 @@ emailInput.addEventListener("input", () => {
 
 const submitButton = document.querySelector("button[type='submit']");
 submitButton.addEventListener("click", (e) => {
-    if (checkEmail() && checkNumber()) {
+    const validation = {
+        "Email": checkEmail(),
+        "Number": checkNumber(),
+    };
+
+    if (Object.values(validation).every((check) => check)) {
         console.log("alt ok");
     } else {
         e.preventDefault();
-        console.log("noe feil");
+        const failed = [];
+        for (let [key, value] of Object.entries(validation)) {
+            if (!value) {
+                failed.push(key);
+            }
+        }
+        console.log(failed + " feilet validering");
     }
-    const number = iti.getNumber();
+    // DEBUG
+/*     const number = iti.getNumber();
     const countryCode = iti.getSelectedCountryData().dialCode;
     console.log("Landskode: " + countryCode);
     console.log("Nummer: " + number);
     console.log("Nummer clean: " + number.replace(`+${countryCode}`, ""));
 
     console.log("error " + iti.getValidationError());
-    console.log(intlTelInputUtils.validationError);
-
+    console.log(intlTelInputUtils.validationError); */
 });
