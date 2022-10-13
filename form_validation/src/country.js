@@ -1,3 +1,5 @@
+import { styleValid } from "./styling";
+
 function populateCountries(ele) {
     const countryData = window.intlTelInputGlobals.getCountryData();
 
@@ -9,4 +11,11 @@ function populateCountries(ele) {
     });
 }
 
-export { populateCountries };
+function countryCheck(input, message) {
+    if (input.value) {
+        styleValid(input, message);
+        return true;
+    }
+}
+
+export { populateCountries, countryCheck };

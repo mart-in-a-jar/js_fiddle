@@ -1,6 +1,6 @@
 import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 import { emailCheck, emailCheckInline } from "./email";
-import { populateCountries } from "./country";
+import { countryCheck, populateCountries } from "./country";
 
 // TELEPHONE
 
@@ -21,6 +21,7 @@ telInput.addEventListener("input", () => {
 
 telInput.addEventListener("countrychange", () => {
     checkNumberInline();
+    countryInput.value = iti.getSelectedCountryData().iso2;
 });
 
 telInput.addEventListener("blur", () => {
@@ -59,6 +60,16 @@ const countryInput = document.querySelector("#country");
 const countryMessage = document.querySelector(".message.country");
 
 populateCountries(countryInput);
+// Set initial value to same as default for telephone
+countryInput.value = iti.getSelectedCountryData().iso2;
+
+function checkCountry() {
+    countryCheck(countryInput, countryMessage);
+}
+
+countryInput.addEventListener("input", () => {
+    checkCountry();
+});
 
 // SUBMIT
 
@@ -67,6 +78,7 @@ submitButton.addEventListener("click", (e) => {
     const validation = {
         Email: checkEmail(),
         Number: checkNumber(),
+        Country: checkCountry(),
     };
 
     if (Object.values(validation).every((check) => check)) {
