@@ -31,19 +31,26 @@
                     </div>
                     <div class="message country"></div>
                 </div>
-                <div class="form-field email">
-                    <div class="input-field email">
-                        <label for="a">Også</label>
-                        <input type="text" />
+                <div class="form-field zip">
+                    <div class="input-field zip">
+                        <label for="zip">Zip code</label>
+                        <input type="tel" id="zip" name="zip" pattern="\d+(-\d+)*"/>
                     </div>
-                    <div class="message email"></div>
+                    <div class="message zip"></div>
                 </div>
-                <div class="form-field email">
-                    <div class="input-field email">
-                        <label for="s">Her</label>
-                        <input type="text" />
+                <div class="form-field pass">
+                    <div class="input-field pass">
+                        <label for="pass">Password</label>
+                        <input type="password" id="pass" name="password"/>
                     </div>
-                    <div class="message email"></div>
+                    <div class="message pass"></div>
+                </div>
+                <div class="form-field pass-confirm">
+                    <div class="input-field pass-confirm">
+                        <label for="pass-confirm">Confirm password</label>
+                        <input type="password" id="pass-confirm"/>
+                    </div>
+                    <div class="message pass-confirm"></div>
                 </div>
                 <button type="submit">Submit</button>
             </form>

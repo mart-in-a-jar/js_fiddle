@@ -46,6 +46,7 @@ form {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="password"],
 select {
     height: 35px;
     border-radius: 4px;
@@ -56,6 +57,7 @@ select {
 input:focus,
 select:focus {
     outline: none;
+    box-shadow: -2px -2px 6px rgba(0, 0, 255, 0.274) inset;
 }
 
 .message {
@@ -78,7 +80,8 @@ input.error {
     border: 1px solid red;
 }
 
-input.valid {
+input.valid,
+select.valid {
     border: 1px solid green;
 }
 

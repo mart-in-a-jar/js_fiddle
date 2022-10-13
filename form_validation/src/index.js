@@ -1,6 +1,7 @@
 import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 import { emailCheck, emailCheckInline } from "./email";
 import { countryCheck, populateCountries } from "./country";
+import { zipCheck, zipCheckInline } from "./zip";
 
 // TELEPHONE
 
@@ -25,6 +26,7 @@ telInput.addEventListener("countrychange", () => {
 });
 
 telInput.addEventListener("blur", () => {
+    iti.setNumber(iti.getNumber());
     setTimeout(() => {
         if (
             document.activeElement !=
@@ -64,11 +66,29 @@ populateCountries(countryInput);
 countryInput.value = iti.getSelectedCountryData().iso2;
 
 function checkCountry() {
-    countryCheck(countryInput, countryMessage);
+    return countryCheck(countryInput, countryMessage);
 }
 
 countryInput.addEventListener("input", () => {
     checkCountry();
+});
+
+// ZIP
+
+const zipInput = document.querySelector("#zip");
+const zipMessage = document.querySelector(".message.zip");
+
+function checkZip() {
+    const country = window.intlTelInputGlobals
+        .getCountryData()
+        .find((country) => {
+            return country.iso2 === countryInput.value;
+        });
+    zipCheckInline(zipInput, zipMessage, country);
+}
+
+zipInput.addEventListener("input", () => {
+    checkZip();
 });
 
 // SUBMIT
@@ -94,7 +114,7 @@ submitButton.addEventListener("click", (e) => {
         console.log(failed + " feilet validering");
     }
     // DEBUG
-    /*     const number = iti.getNumber();
+    /*     const number = iti.getNumber(); // Or input.value
     const countryCode = iti.getSelectedCountryData().dialCode;
     console.log("Landskode: " + countryCode);
     console.log("Nummer: " + number);
