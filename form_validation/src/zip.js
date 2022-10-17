@@ -1,4 +1,4 @@
-import { styleError } from "./styling";
+import { styleError, styleValid } from "./styling";
 
 function zipCheckInline(input, message, country) {
     if (input.validity.patternMismatch) {
@@ -11,11 +11,10 @@ function zipCheckInline(input, message, country) {
         message.textContent = "";
         if (country.iso2 === "no") {
             const re = /^\d+$/;
-            console.log(re.test(input.value));
             if (input.value.length > 4) {
                 styleError(input, message);
-                message.textContent = "Max 4 digits";
-            } else if (!re.test(input.value)) {
+                message.textContent = "Should be 4 digits";
+            } else if (input.value && !re.test(input.value)) {
                 styleError(input, message);
                 message.textContent = "Only numbers allowed";
             } else {
@@ -26,9 +25,33 @@ function zipCheckInline(input, message, country) {
     }
 }
 
-// check on blur, submit and country change
 function zipCheck(input, message, country) {
-
+    if (input.validity.patternMismatch) {
+        styleError(input, message);
+        message.textContent = "Only numbers allowed";
+        return false;
+    } else if (country.iso2 === "no" && input.value) {
+        const re = /^\d+$/;
+        if (input.value.length != 4) {
+            styleError(input, message);
+            message.textContent = "Should be 4 digits";
+            return false;
+        } else if (!re.test(input.value)) {
+            styleError(input, message);
+            message.textContent = "Only numbers allowed";
+            return false;
+        } else {
+            styleValid(input, message);
+            return true;
+        }
+    } else if (!input.value) {
+        styleError(input, message);
+        message.textContent = "Required";
+        return false;
+    } else {
+        styleValid(input, message);
+        return true;
+    }
 }
 
 export { zipCheckInline, zipCheck };

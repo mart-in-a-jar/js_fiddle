@@ -23,6 +23,7 @@ telInput.addEventListener("input", () => {
 telInput.addEventListener("countrychange", () => {
     checkNumberInline();
     countryInput.value = iti.getSelectedCountryData().iso2;
+    checkZip();
 });
 
 telInput.addEventListener("blur", () => {
@@ -62,8 +63,12 @@ const countryInput = document.querySelector("#country");
 const countryMessage = document.querySelector(".message.country");
 
 populateCountries(countryInput);
-// Set initial value to same as default for telephone
-countryInput.value = iti.getSelectedCountryData().iso2;
+// Set initial value to same as default for telephone (if it exists)
+if (iti.getSelectedCountryData().iso2) {
+    countryInput.value = iti.getSelectedCountryData().iso2;
+} else {
+    countryInput.value = "no";
+}
 
 function checkCountry() {
     return countryCheck(countryInput, countryMessage);
@@ -78,7 +83,7 @@ countryInput.addEventListener("input", () => {
 const zipInput = document.querySelector("#zip");
 const zipMessage = document.querySelector(".message.zip");
 
-function checkZip() {
+function checkZipInline() {
     const country = window.intlTelInputGlobals
         .getCountryData()
         .find((country) => {
@@ -87,7 +92,20 @@ function checkZip() {
     zipCheckInline(zipInput, zipMessage, country);
 }
 
+function checkZip() {
+    const country = window.intlTelInputGlobals
+        .getCountryData()
+        .find((country) => {
+            return country.iso2 === countryInput.value;
+        });
+    return zipCheck(zipInput, zipMessage, country);
+}
+
 zipInput.addEventListener("input", () => {
+    checkZipInline();
+});
+
+zipInput.addEventListener("blur", () => {
     checkZip();
 });
 
@@ -99,6 +117,7 @@ submitButton.addEventListener("click", (e) => {
         Email: checkEmail(),
         Number: checkNumber(),
         Country: checkCountry(),
+        Zip: checkZip(),
     };
 
     if (Object.values(validation).every((check) => check)) {
