@@ -1,7 +1,9 @@
+import "@fortawesome/fontawesome-pro/js/all";
 import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 import { emailCheck, emailCheckInline } from "./email";
 import { countryCheck, populateCountries } from "./country";
 import { zipCheck, zipCheckInline } from "./zip";
+import { passCheckInline, passConfirmCheckInline } from "./password";
 
 // TELEPHONE
 
@@ -108,6 +110,29 @@ zipInput.addEventListener("input", () => {
 zipInput.addEventListener("blur", () => {
     checkZip();
 });
+
+// PASSWORD
+
+const passInput = document.querySelector("#pass");
+const passMessage = document.querySelector(".message.pass");
+const passConfirm = document.querySelector("#pass-confirm");
+const passConfirmMessage = document.querySelector(".message.pass-confirm");
+
+function checkPassInline() {
+    return passCheckInline(passInput, passMessage);
+}
+
+function checkPassConfirmInline() {
+    return passConfirmCheckInline(passInput, passConfirm, passConfirmMessage);
+}
+
+passInput.addEventListener("input", () => {
+    checkPassInline();
+});
+
+passConfirm.addEventListener("input", () => {
+    checkPassConfirmInline();
+})
 
 // SUBMIT
 

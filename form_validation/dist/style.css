@@ -88,3 +88,29 @@ select.valid {
 form button {
     padding: 8px 15px;
 }
+
+input[type="password"] {
+    padding-right: 30px;
+}
+
+.icon {
+    display: none;
+    margin-left: -30px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.699);
+    line-height: 100%;
+}
+
+.icon.active {
+    display: inline-block;
+}
+
+.fa-eye,
+.fa-eye-slash {
+    display: none;
+}
+
+.fa-eye.active,
+.fa-eye-slash.active {
+    display: block;
+}
