@@ -3,7 +3,12 @@ import { telephoneInput, numberCheck, numberCheckInline } from "./telephone";
 import { emailCheck, emailCheckInline } from "./email";
 import { countryCheck, populateCountries } from "./country";
 import { zipCheck, zipCheckInline } from "./zip";
-import { passCheckInline, passConfirmCheckInline } from "./password";
+import {
+    passCheck,
+    passCheckInline,
+    passConfirmCheck,
+    passConfirmCheckInline,
+} from "./password";
 
 // TELEPHONE
 
@@ -119,11 +124,24 @@ const passConfirm = document.querySelector("#pass-confirm");
 const passConfirmMessage = document.querySelector(".message.pass-confirm");
 
 function checkPassInline() {
-    return passCheckInline(passInput, passMessage);
+    return passCheckInline(
+        passInput,
+        passConfirm,
+        passMessage,
+        passConfirmMessage
+    );
 }
 
 function checkPassConfirmInline() {
     return passConfirmCheckInline(passInput, passConfirm, passConfirmMessage);
+}
+
+function checkPass() {
+    return passCheck(passInput, passMessage);
+}
+
+function checkPassConfirm() {
+    return passConfirmCheck(passInput, passConfirm, passConfirmMessage, passMessage);
 }
 
 passInput.addEventListener("input", () => {
@@ -132,7 +150,15 @@ passInput.addEventListener("input", () => {
 
 passConfirm.addEventListener("input", () => {
     checkPassConfirmInline();
-})
+});
+
+passInput.addEventListener("blur", () => {
+    checkPass();
+});
+
+passConfirm.addEventListener("blur", () => {
+    checkPassConfirm();
+});
 
 // SUBMIT
 
@@ -143,6 +169,8 @@ submitButton.addEventListener("click", (e) => {
         Number: checkNumber(),
         Country: checkCountry(),
         Zip: checkZip(),
+        Password: checkPass(),
+        "Password confirm": checkPassConfirm(),
     };
 
     if (Object.values(validation).every((check) => check)) {
@@ -157,6 +185,7 @@ submitButton.addEventListener("click", (e) => {
         }
         console.log(failed + " feilet validering");
     }
+
     // DEBUG
     /*     const number = iti.getNumber(); // Or input.value
     const countryCode = iti.getSelectedCountryData().dialCode;
@@ -166,4 +195,14 @@ submitButton.addEventListener("click", (e) => {
 
     console.log("error " + iti.getValidationError());
     console.log(window.intlTelInputUtils.validationError); */
+});
+
+// Remove red backgroud when selecting input
+const allInputs = document.querySelectorAll("input");
+allInputs.forEach((input) => {
+    input.addEventListener("focus", () => {
+        if (input.classList.contains("error")) {
+            input.classList.remove("error");
+        }
+    });
 });

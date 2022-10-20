@@ -62,12 +62,7 @@ select:focus {
 
 .message {
     grid-area: message;
-    align-self: end;
-    line-height: 35px;
-}
-
-.message.error {
-    /* color: red; */
+    align-self: center;
 }
 
 .message.valid {
