@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gif central</title>
+    </head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            justify-content: center;
+            height: 90vh;
+        }
+    </style>
+    <body>
+        <img height="500px" />
+        <div class="search">
+            <input type="text" value="cow" />
+            <button>Get gif</button>
+        </div>
+    </body>
+    <script>
+        const img = document.querySelector("img");
+        const img2 = document.querySelector("img.two");
+        const button = document.querySelector("button");
+        const searchField = document.querySelector("input[type=text]");
+        function getImage(searchString) {
+            fetch(
+                `https://api.giphy.com/v1/gifs/translate?api_key=86ZDhDik5Ay1jM0KkK8rXCkV0R6BAO5c&s=${searchString}`,
+                {
+                    mode: "cors",
+                }
+            )
+                .then((response) => {
+                    console.log(
+                        "Status: ",
+                        response.status,
+                        response.statusText
+                    );
+                    if (!response.ok) {
+                        img.src =
+                            "https://cdn-icons-png.flaticon.com/512/2100/2100813.png";
+                        throw new Error("Response was not OK");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    img.src = data.data.images.original.url;
+                    img.alt = data.data.title;
+                })
+                .catch((error) => {
+                    console.error("It did not work: ", error);
+                    getImage("not found");
+                });
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            let gifQuery = "cow";
+            const params = document.location.search.substring(1).split("&");
+            if (params) {
+                for (let para of params) {
+                    const query = para.split("=");
+                    if (query[0] === "search") {
+                        gifQuery = decodeURI(query[1]);
+                    }
+                }
+                searchField.value = gifQuery;
+            }
+            getImage(gifQuery);
+        });
+        button.addEventListener("click", () => getImage(searchField.value));
+        searchField.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                getImage(searchField.value);
+                searchField.select();
+            }
+        });
+
+        //////////
+
+        async function getHeroes() {
+            return await fetch(
+                "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json"
+            ).then((response) => response.json());
+        }
+
+        let heroes;
+        getHeroes().then((data) => (heroes = data));
+    </script>
+</html>

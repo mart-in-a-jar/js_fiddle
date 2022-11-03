@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        img {
+            max-height: 250px;
+            max-width: 500px;
+            margin-bottom: 0;
+        }
+        input {
+            margin-bottom: 20px;
+        }
+        p {
+            margin-top: 0;
+        }
+    </style>
+    <body>
+        <input type="file" multiple accept="image/*" />
+        <div class="fileList"></div>
+        <button class="send">Send</button>
+    </body>
+    <script>
+        const fileInput = document.querySelector("input[type=file][multiple]");
+        const fileList = document.querySelector(".fileList");
+        const sendButton = document.querySelector("button.send");
+
+        fileInput.addEventListener("input", () => {
+            for (let file of fileInput.files) {
+                const imagePreview = document.createElement("img");
+                imagePreview.src = URL.createObjectURL(file);
+                const para = document.createElement("p");
+                para.textContent = file.name;
+                fileList.append(imagePreview, para);
+            }
+        });
+
+        function sendFiles() {
+            const formData = new FormData();
+            formData.append("Title", "Files");
+
+            let i = 1;
+            for (const file of fileInput.files) {
+                formData.append(`file-${i}`, file);
+                i++;
+            }
+
+            fetch("https://httpbin.org/post", {
+                headers: {authorization: "Bearer aewaeawe"},
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => {
+                    console.log("Headers ", response.headers);
+                    const contentType = response.headers.get("content-type");
+                    console.log("Content-Type: ", contentType);
+                    if (
+                        !contentType ||
+                        !contentType.includes("application/json")
+                    ) {
+                        throw new TypeError("No JSON!!");
+                    }
+                    return response.json();
+                })
+                .then((result) => {
+                    console.log("Success: ", result);
+                    for (const [name, file] of Object.entries(result.files)) {
+                        console.log(`${name}: ${file}`);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error: ", error);
+                });
+        }
+
+        sendButton.addEventListener("click", sendFiles);
+    </script>
+</html>
