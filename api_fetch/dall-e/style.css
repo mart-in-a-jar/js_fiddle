@@ -1,0 +1,101 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.img-wrapper {
+    width: 1024px;
+    height: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    position: relative;
+    overflow: hidden;
+}
+
+img {
+    position: absolute;
+    z-index: 1;
+}
+
+input {
+    width: 500px;
+    height: 40px;
+}
+
+input:placeholder-shown ~ button:hover {
+    cursor: not-allowed;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    height: 40px;
+    padding: 5px 8px;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+button:hover {
+    outline: 1px solid rgb(2, 114, 114);
+}
+
+.spinner {
+    z-index: -1;
+}
+
+.spinner {
+    transform-origin: center;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scale {
+    20% {
+        transform: translateY(-5px);
+    }
+    40% {
+        transform: translateY(5px);
+        padding-left: 15px;
+    }
+    60% {
+        transform: translateX(0);
+    }
+    100% {
+        font-size: 1rem;
+    }
+}
+
+input.warn {
+    animation: scale 800ms linear;
+    border: 2px dotted rgb(124, 0, 0);
+}
+
+.search-wrapper {
+    display: flex;
+    gap: 5px;
+}

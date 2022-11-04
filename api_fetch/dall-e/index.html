@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI generated images</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <script src="script.js" type="module" defer></script>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AI generated images</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="script.js" type="module" defer></script>
+    </head>
+    <body>
+        <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1560421683-6856ea585c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80"/>
+            <div class="img-placeholder">
+                <svg
+                    width="100"
+                    height="100"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        class="spinner"
+                        d="M12,23a9.63,9.63,0,0,1-8-9.5,9.51,9.51,0,0,1,6.79-9.1A1.66,1.66,0,0,0,12,2.81h0a1.67,1.67,0,0,0-1.94-1.64A11,11,0,0,0,12,23Z"
+                    />
+                </svg>
+                <p>Generating image..</p>
+            </div>
+        </div>
+        <div class="search-wrapper">
+            <input type="text" placeholder="Describe image to generate" autocomplete="off"/>
+            <button>Generate image</button>
+        </div>
+    </body>
 </html>
