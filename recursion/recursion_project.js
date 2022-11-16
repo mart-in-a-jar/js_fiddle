@@ -68,4 +68,4 @@ function merge(arr1, arr2) {
     return merged;
 }
 
-console.log(mergeSort([5,2,100,70,55,9000,1,4,3,45,666]));
+// console.log(mergeSort([5,2,100,70,55,9000,1,4,3,45,666]));
