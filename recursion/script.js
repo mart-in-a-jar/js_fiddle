@@ -1,7 +1,5 @@
 // https://javascript.info/recursion
 
-const { fi } = require("date-fns/locale");
-
 // For loop
 
 function fSumTo(n) {
@@ -133,4 +131,4 @@ function collatz(n) {
     }
 }
 
-console.log(collatz(50));
+// console.log(collatz(50));
