@@ -108,6 +108,40 @@ const linkedlist = () => {
         return string;
     };
 
+    const insertAt = (value, index) => {
+        const newNode = new Node(value);
+        if (index === 0) return prepend(value);
+        else if (index === size()) return append(value);
+        else if (index < 0 || index > size()) {
+            throw new Error(`Index out of range (${size()})`);
+        }
+        let nextNode = head;
+        for (let i = 0; i < index - 1; i++) {
+            nextNode = nextNode.next;
+        }
+        newNode.next = nextNode.next;
+        return (nextNode.next = newNode);
+    };
+
+    const removeAt = (index) => {
+        let removed;
+        if (!head) return null;
+        if (index === 0) {
+            removed = head;
+            head = head.next;
+        } else if (index < 0 || index > size() - 1) {
+            throw new Error(`Index out of range (${size()})`);
+        } else {
+            let nextNode = head;
+            for (let i = 0; i < index - 1; i++) {
+                nextNode = nextNode.next;
+            }
+            removed = nextNode.next;
+            nextNode.next = nextNode.next.next;
+        }
+        return removed;
+    };
+
     return {
         append,
         prepend,
@@ -119,57 +153,7 @@ const linkedlist = () => {
         contains,
         find,
         toString,
+        insertAt,
+        removeAt,
     };
 };
-
-const a = linkedlist();
-console.log("Contains 1 ", a.contains("1"));
-console.log("Find 1 ", a.find("1"));
-console.log("AT 2 ", a.at(2));
-console.log(a.size());
-console.log("Head: ", a.head());
-console.log("Tail: ", a.tail());
-console.log("POP ", a.pop());
-a.prepend("1");
-console.log(a.size());
-console.log(a.toString());
-console.log("Head: ", a.head());
-console.log("Tail: ", a.tail());
-console.log("AT 0 ", a.at(0));
-console.log("AT 1 ", a.at(1));
-console.log("Contains 1 ", a.contains("1"));
-console.log("Find 1 ", a.find("1"));
-console.log("POP ", a.pop());
-console.log(a.size());
-console.log(a.toString());
-a.append("2");
-console.log(a.size());
-console.log(a.toString());
-console.log("AT 2 ", a.at(2));
-console.log("Contains 2 ", a.contains("2"));
-a.append("3");
-console.log(a.size());
-console.log(a.toString());
-a.append("4");
-console.log(a.size());
-console.log(a.toString());
-console.log("Find 3 ", a.find("3"));
-a.prepend("0");
-console.log(a.size());
-console.log(a.toString());
-a.prepend("-1");
-console.log(a.size());
-console.log(a.toString());
-console.log("Head: ", a.head());
-console.log("Tail: ", a.tail());
-console.log("AT 2 ", a.at(2));
-console.log("AT 5 ", a.at(5));
-console.log("AT 8 ", a.at(8));
-console.log(a.toString());
-console.log("Contains -1 ", a.contains("-1"));
-console.log("Contains 4 ", a.contains("4"));
-console.log("Find 0 ", a.find("0"));
-console.log("Find 8 ", a.find("8"));
-console.log(a.pop());
-console.log(a.size());
-console.log(a.toString());
