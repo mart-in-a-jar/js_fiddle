@@ -60,6 +60,18 @@ const linkedlist = () => {
         return nextNode.value;
     };
 
+    const pop = () => {
+        if (!head) return null;
+        if (head.next === null) {
+            return (head = null);
+        }
+        let nextNode = head;
+        while (nextNode.next.next != null) {
+            nextNode = nextNode.next;
+        }
+        return (nextNode.next = null);
+    };
+
     const toString = () => {
         if (!head) return null;
         let string = `( ${head.value} )`;
@@ -79,6 +91,7 @@ const linkedlist = () => {
         head: getHead,
         tail,
         at,
+        pop,
         toString,
     };
 };
@@ -88,6 +101,7 @@ console.log("AT 2 ", a.at(2));
 console.log(a.size());
 console.log("Head: ", a.head());
 console.log("Tail: ", a.tail());
+console.log("POP ", a.pop());
 a.prepend("1");
 console.log(a.size());
 console.log(a.toString());
@@ -95,6 +109,9 @@ console.log("Head: ", a.head());
 console.log("Tail: ", a.tail());
 console.log("AT 0 ", a.at(0));
 console.log("AT 1 ", a.at(1));
+console.log("POP ", a.pop());
+console.log(a.size());
+console.log(a.toString());
 a.append("2");
 console.log(a.size());
 console.log(a.toString());
@@ -114,5 +131,9 @@ console.log(a.toString());
 console.log("Head: ", a.head());
 console.log("Tail: ", a.tail());
 console.log("AT 2 ", a.at(2));
-console.log("AT 6 ", a.at(6));
+console.log("AT 5 ", a.at(5));
 console.log("AT 8 ", a.at(8));
+console.log(a.toString());
+console.log(a.pop());
+console.log(a.size());
+console.log(a.toString());
