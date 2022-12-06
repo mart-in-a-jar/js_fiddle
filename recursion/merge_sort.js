@@ -34,3 +34,28 @@ function mergeAlt(arr1, arr2) {
     }
     return merged.concat(arr1, arr2);
 }
+
+function mergeAlt2(arr1, arr2) {
+    let i = 0, // arr1 iterator
+        j = 0, // arr2 iterator
+        k = 0; // result iterator
+    const merged = [];
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+    for (i; i < arr1.length; i++) {
+        merged[k++] = arr1[i];
+    }
+    for (j; j < arr2.length; j++) {
+        merged[k++] = arr2[j];
+    }
+    // This will do the same as the above for loops:
+    // return merged.concat(arr1.slice(i), arr2.slice(j));
+    return merged;
+}
+
+console.log(mergeAlt2([1, 2, 3, 4, 5], [2, 3,7,8,9,100,1000,20000]));
