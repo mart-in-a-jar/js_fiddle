@@ -50,6 +50,6 @@ window.addEventListener("DOMContentLoaded", toggleAuto);
 
 let timer;
 function toggleAuto() {
-    if (slider.checked) timer = setInterval(autoCheck, 1000);
+    if (slider.checked) timer = setInterval(autoCheck, 3000);
     else clearInterval(timer);
 }
