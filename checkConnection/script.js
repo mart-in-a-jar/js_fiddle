@@ -16,8 +16,10 @@ async function checkConnection() {
 }
 
 function testConnection() {
-    return checkConnection().then((data) => {
-        document.querySelector(".status").textContent = data;
+    const statusText = document.querySelector(".status");
+    statusText.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_ajPY{transform-origin:center;animation:spinner_AtaB .75s infinite linear}@keyframes spinner_AtaB{100%{transform:rotate(360deg)}}</style><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" class="spinner_ajPY"/></svg>`;
+    checkConnection().then((data) => {
+        statusText.textContent = data;
     });
 }
 
@@ -36,12 +38,7 @@ document.querySelector("button").addEventListener("click", testConnection);
   fetch(url.toString(), {method: "HEAD"})
  */
 
-function autoCheck() {
-    document.querySelector(
-        ".status"
-    ).innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_ajPY{transform-origin:center;animation:spinner_AtaB .75s infinite linear}@keyframes spinner_AtaB{100%{transform:rotate(360deg)}}</style><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" class="spinner_ajPY"/></svg>`;
-    testConnection();
-}
+// Autocheck
 
 const slider = document.querySelector("input[type='checkbox']");
 slider.addEventListener("change", toggleAuto);
@@ -50,6 +47,6 @@ window.addEventListener("DOMContentLoaded", toggleAuto);
 
 let timer;
 function toggleAuto() {
-    if (slider.checked) timer = setInterval(autoCheck, 3000);
+    if (slider.checked) timer = setInterval(testConnection, 3000);
     else clearInterval(timer);
 }
