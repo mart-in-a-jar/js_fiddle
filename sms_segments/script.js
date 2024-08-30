@@ -2,15 +2,20 @@
 import { SegmentedMessage } from "sms-segments-calculator";
 
 const textInput = document.getElementById("sms-body");
+const amountInput = document.querySelector("#amount");
 const encodingOutput = document.getElementById("encoding");
 const segmentOutput = document.getElementById("segments");
 const priceOutput = document.getElementById("price");
+const totalPriceOutput = document.getElementById("price-total");
 const img = document.querySelector(".woah");
 let changeRate = 10.83;
 const smsPrice = 0.0651; // $
+let price;
 
 let smsBody;
 let segmentedMessage;
+
+const numberFormat = new Intl.NumberFormat("no-NO");
 
 const getExchangerate = async () => {
     try {
@@ -18,8 +23,10 @@ const getExchangerate = async () => {
             "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json",
         );
         const data = await res.json();
-        changeRate = data.usd.nok;
-        if (res.ok) {
+        if (res.ok && data.usd.nok && data.usd.nok !== changeRate) {
+            changeRate = data.usd.nok;
+            updatePrice();
+            updatePriceTotal();
             console.log(`Exchange rate: ${changeRate}`);
         }
     } catch (error) {
@@ -28,6 +35,10 @@ const getExchangerate = async () => {
 };
 
 getExchangerate();
+document.addEventListener("DOMContentLoaded", () => {
+    updatePrice();
+    updatePriceTotal();
+});
 
 function getPrice(segments) {
     const priceUS = segments * smsPrice;
@@ -35,11 +46,11 @@ function getPrice(segments) {
     return { priceUS, priceNO };
 }
 
-textInput.addEventListener("input", () => {
+const updatePrice = () => {
     smsBody = textInput.value;
     segmentedMessage = new SegmentedMessage(smsBody);
     const numberOfSegments = segmentedMessage.segments.length;
-    const price = getPrice(numberOfSegments);
+    price = getPrice(numberOfSegments);
     encodingOutput.textContent = segmentedMessage.encodingName;
     segmentOutput.textContent = numberOfSegments;
     priceOutput.textContent = `${Math.round(price.priceNO * 100) / 100}kr ($${Math.round(price.priceUS * 100) / 100})`;
@@ -48,4 +59,18 @@ textInput.addEventListener("input", () => {
     } else {
         img.style.display = "none";
     }
+};
+
+const updatePriceTotal = () => {
+    const amount = +amountInput.value;
+    totalPriceOutput.textContent = `${numberFormat.format(Math.round(price.priceNO * amount * 100) / 100)}kr ($${numberFormat.format(Math.round(price.priceUS * amount * 100) / 100)})`;
+};
+
+textInput.addEventListener("input", () => {
+    updatePrice();
+    updatePriceTotal();
+});
+
+amountInput.addEventListener("input", () => {
+    updatePriceTotal();
 });

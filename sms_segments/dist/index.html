@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -28,16 +28,38 @@
     <body>
         <h1>Lindas SMS-sjekk</h1>
         <div class="main">
-            <textarea
-                name="sms-body"
-                id="sms-body"
-                cols="50"
-                rows="10"
-            ></textarea>
-            <p class="price">Pris: <span id="price"></span></p>
-            <p>Antall segmenter: <span id="segments"></span></p>
-            <p>Encoding: <span id="encoding"></span></p>
+            <div class="input-group">
+                <label for="sms-body">Melding</label>
+                <textarea
+                    name="sms-body"
+                    id="sms-body"
+                    cols="50"
+                    rows="10"
+                ></textarea>
+            </div>
+            <div class="input-group">
+                <label for="amount">Antall SMS</label>
+                <input type="number" name="amount" id="amount" value="1" />
+            </div>
+            <table>
+                <tr class="price-total">
+                    <td ">Pris totalt:</td>
+                    <td id="price-total"></td>
+                </tr>
+                <tr>
+                    <td class="price">Pris pr sms:</td>
+                    <td id="price"></td>
+                </tr>
+                <tr>
+                    <td>Antall segmenter:</td>
+                    <td id="segments"></td>
+                </tr>
+                <tr>
+                    <td>Encoding:</td>
+                    <td id="encoding"></td>
+                </tr>
+            </table>
         </div>
-        <img class="woah" src="./img/giphy.webp" alt="">
+        <img class="woah" src="./img/giphy.webp" alt="" />
     </body>
 </html>
