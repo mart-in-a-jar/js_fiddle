@@ -5,8 +5,10 @@ const textInput = document.getElementById("sms-body");
 const amountInput = document.querySelector("#amount");
 const encodingOutput = document.getElementById("encoding");
 const segmentOutput = document.getElementById("segments");
-const priceOutput = document.getElementById("price");
-const totalPriceOutput = document.getElementById("price-total");
+const priceOutputNok = document.getElementById("price-nok");
+const priceOutputUsd = document.getElementById("price-usd");
+const totalPriceOutputNok = document.getElementById("price-total-nok");
+const totalPriceOutputUsd = document.getElementById("price-total-usd");
 const img = document.querySelector(".woah");
 let changeRate = 10.83;
 const smsPrice = 0.0651; // $
@@ -53,7 +55,8 @@ const updatePrice = () => {
     price = getPrice(numberOfSegments);
     encodingOutput.textContent = segmentedMessage.encodingName;
     segmentOutput.textContent = numberOfSegments;
-    priceOutput.textContent = `${Math.round(price.priceNO * 100) / 100}kr ($${Math.round(price.priceUS * 100) / 100})`;
+    priceOutputNok.textContent = `${Math.round(price.priceNO * 100) / 100}`;
+    priceOutputUsd.textContent = `${Math.round(price.priceUS * 100) / 100}`;
     if (numberOfSegments > 1) {
         img.style.display = "block";
     } else {
@@ -63,7 +66,8 @@ const updatePrice = () => {
 
 const updatePriceTotal = () => {
     const amount = +amountInput.value;
-    totalPriceOutput.textContent = `${numberFormat.format(Math.round(price.priceNO * amount * 100) / 100)}kr ($${numberFormat.format(Math.round(price.priceUS * amount * 100) / 100)})`;
+    totalPriceOutputNok.textContent = `${numberFormat.format(Math.round(price.priceNO * amount * 100) / 100)}`;
+    totalPriceOutputUsd.textContent = `${numberFormat.format(Math.round(price.priceUS * amount * 100) / 100)}`;
 };
 
 textInput.addEventListener("input", () => {

@@ -42,22 +42,31 @@
                 <input type="number" name="amount" id="amount" value="1" />
             </div>
             <table>
+                <thead>
+                    <td></td>
+                    <th>NOK (kr)</th>
+                    <th>USD ($)</th>
+                </thead>
                 <tr class="price-total">
-                    <td ">Pris totalt:</td>
-                    <td id="price-total"></td>
+                    <th ">Pris totalt</th>
+                    <td id="price-total-nok"></td>
+                    <td id="price-total-usd"></td>
                 </tr>
                 <tr>
-                    <td class="price">Pris pr sms:</td>
-                    <td id="price"></td>
+                    <th class="price">Pris pr sms</th>
+                    <td id="price-nok"></td>
+                    <td id="price-usd"></td>
                 </tr>
-                <tr>
-                    <td>Antall segmenter:</td>
-                    <td id="segments"></td>
-                </tr>
-                <tr>
-                    <td>Encoding:</td>
-                    <td id="encoding"></td>
-                </tr>
+                <table>
+                    <tr>
+                        <td>Antall segmenter</td>
+                        <td id="segments"></td>
+                    </tr>
+                    <tr>
+                        <td >Encoding</td>
+                        <td id="encoding"></td>
+                    </tr>
+                </table>
             </table>
         </div>
         <img class="woah" src="./img/giphy.webp" alt="" />
