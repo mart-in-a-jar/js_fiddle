@@ -1,0 +1,19 @@
+:root {
+    color: #222222;
+    background-color: #F2F2F2;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 20px;
+}
+
+.woah {
+    display: none;
+}
