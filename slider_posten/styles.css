@@ -33,7 +33,6 @@ body {
     background-color: #fff;
     border-radius: 10px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    cursor: grab;
     user-select: none;
     transition: transform 0.3s ease;
     display: grid;
@@ -43,6 +42,7 @@ body {
     grid-template-rows: 30% 20%;
     color: #f2f2f2;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .item-1 {
@@ -52,6 +52,7 @@ body {
     justify-items: start;
     align-content: start;
     padding: 10px 25px;
+    cursor: grab;
 }
 
 .item-1 div {
@@ -91,8 +92,11 @@ body {
 }
 
 .slider-item.dragging {
-    cursor: grabbing;
     transition: none;
+}
+
+.item-1.dragging {
+    cursor: grabbing;
 }
 
 /* Add styles for the left-side element */
